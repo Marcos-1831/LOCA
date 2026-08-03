@@ -212,6 +212,158 @@ function createHeart(){
 
 setInterval(createHeart,1200);
 
+/* ==========================
+       REPRODUCTOR MUSICAL
+========================== */
+
+
+const music = document.getElementById("music");
+
+const playButton = document.getElementById("play");
+
+const progress = document.getElementById("progress");
+
+const volume = document.getElementById("volume");
+
+const player = document.querySelector(".music-player");
+
+
+let isPlaying = false;
+
+
+
+// PLAY / PAUSA
+
+playButton.addEventListener("click",()=>{
+
+
+    if(!isPlaying){
+
+        music.play();
+
+        playButton.innerHTML="⏸";
+
+        player.classList.add("music-playing");
+
+        isPlaying=true;
+
+
+    }else{
+
+
+        music.pause();
+
+        playButton.innerHTML="▶️";
+
+        player.classList.remove("music-playing");
+
+        isPlaying=false;
+
+    }
+
+
+});
+
+
+
+
+
+// ACTUALIZAR BARRA DE TIEMPO
+
+music.addEventListener("timeupdate",()=>{
+
+
+    if(music.duration){
+
+
+        progress.value =
+        (music.currentTime / music.duration) * 100;
+
+
+    }
+
+
+});
+
+
+
+
+
+// MOVER CANCIÓN
+
+progress.addEventListener("input",()=>{
+
+
+    music.currentTime =
+    (progress.value / 100) * music.duration;
+
+
+});
+
+
+
+
+
+// VOLUMEN
+
+volume.addEventListener("input",()=>{
+
+
+    music.volume =
+    volume.value;
+
+
+});
+
+
+
+
+
+// CUANDO TERMINA
+
+music.addEventListener("ended",()=>{
+
+
+    playButton.innerHTML="▶️";
+
+    player.classList.remove("music-playing");
+
+    isPlaying=false;
+
+
+});
+
+
+
+
+
+/* ==========================
+       BOTONES FUTUROS
+========================== */
+
+
+const prev =
+document.getElementById("prev");
+
+
+const next =
+document.getElementById("next");
+
+
+
+prev.addEventListener("click",()=>{
+
+    alert("Próximamente: canción anterior 🎵");
+
+});
+
+
+
+next.addEventListener("click",()=>{
+
+    alert("Próximamente: siguiente canción 🎵");
+
+});
 
 
 
