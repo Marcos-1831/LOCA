@@ -211,7 +211,61 @@ function createHeart(){
 
 
 setInterval(createHeart,1200);
+/* ==========================
+        CARTA
+========================== */
 
+const envelope = document.getElementById("envelope");
+const openButton = document.getElementById("openButton");
+const typingText = document.getElementById("typing-text");
+
+const letterText = 
+"Desde este pequeño universo quería dejarte unas palabras especiales. Entre estrellas, sueños y momentos únicos, esta carta guarda un mensaje que viene desde el corazón. 🌙✨";
+
+
+let letterOpened = false;
+let letterIndex = 0;
+
+
+openButton.addEventListener("click", () => {
+
+    if(!letterOpened){
+
+        envelope.classList.add("open");
+
+        openButton.innerHTML = "Carta abierta 💌";
+
+        writeLetter();
+
+        letterOpened = true;
+
+    }
+
+});
+
+
+
+function writeLetter(){
+
+    typingText.innerHTML = "";
+
+    let typing = setInterval(()=>{
+
+        typingText.innerHTML += letterText[letterIndex];
+
+        letterIndex++;
+
+
+        if(letterIndex >= letterText.length){
+
+            clearInterval(typing);
+
+        }
+
+
+    },40);
+
+}
 /* ==========================
        REPRODUCTOR MUSICAL
 ========================== */
